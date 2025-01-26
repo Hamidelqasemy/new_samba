@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI RFP Analyst</title>
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>AI-Powered RFP Analysis</h1>
+      <p>Upload multiple RFP documents and get instant expert analysis</p>
+    </header>
+
+    <div class="upload-container">
+      <div class="drag-drop-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
+        <i class="ph ph-cloud-arrow-up" style="font-size: 2.5rem; color: #94a3b8; margin-bottom: 1rem;"></i>
+        <p>Drag & drop files here or <span class="upload-link">browse</span></p>
+        <p class="text-sm" style="color: #64748b; margin-top: 0.5rem;">
+          Supported formats: PDF, DOCX (Max 16MB each)
+        </p>
+      </div>
+      
+      <div class="file-preview" id="filePreview"></div>
+      
+      <button class="upload-btn" onclick="uploadFiles()" id="analyzeBtn">
+        Analyze Documents
+        <i class="ph ph-magnifying-glass"></i>
+      </button>
+    </div>
+
+    <div class="results-container" id="results"></div>
+  </div>
+
+  <script src="../static/js/app.js"></script>
+</body>
+</html>
