@@ -4,6 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const filePreview = document.getElementById('filePreview');
     const analyzeBtn = document.getElementById('analyzeBtn');
   
+    document.getElementById('analyzeBtn').addEventListener('click', (e) => {
+        e.preventDefault();
+        uploadFiles();
+    });
+
     // Drag and drop handlers
     dropZone.addEventListener('dragover', (e) => {
       e.preventDefault();
@@ -20,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
       fileInput.files = e.dataTransfer.files;
       updateFilePreview();
     });
+
+    dropZone.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('fileInput').click();
+      });
   
     // File input change handler
     fileInput.addEventListener('change', () => {
@@ -50,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const files = document.getElementById('fileInput').files;
     const resultsDiv = document.getElementById('results');
     const analyzeBtn = document.getElementById('analyzeBtn');
+    
+    if (files.length === 0) {
+        showError('Please select files first!');
+        return;
+    }
     
     if (files.length < 2) {
       showError('Please upload at least 2 files');

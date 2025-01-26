@@ -15,7 +15,7 @@
     </header>
 
     <div class="upload-container">
-      <div class="drag-drop-area" id="dropZone" onclick="document.getElementById('fileInput').click()">
+      <div class="drag-drop-area" id="dropZone">
         <i class="ph ph-cloud-arrow-up" style="font-size: 2.5rem; color: #94a3b8; margin-bottom: 1rem;"></i>
         <p>Drag & drop files here or <span class="upload-link">browse</span></p>
         <p class="text-sm" style="color: #64748b; margin-top: 0.5rem;">
@@ -23,9 +23,11 @@
         </p>
       </div>
       
+      <input type="file" id="fileInput" multiple accept=".pdf,.docx" hidden>
+      
       <div class="file-preview" id="filePreview"></div>
       
-      <button class="upload-btn" onclick="uploadFiles()" id="analyzeBtn">
+      <button class="upload-btn" type="button" id="analyzeBtn">
         Analyze Documents
         <i class="ph ph-magnifying-glass"></i>
       </button>
