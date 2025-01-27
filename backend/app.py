@@ -5,7 +5,6 @@ from agents import analyze_proposals
 import os
 from flask_cors import CORS
 
-
 load_dotenv()
 
 app = Flask(__name__)
@@ -20,27 +19,29 @@ def index():
 @app.route('/analyze', methods=['POST'])
 def analyze_endpoint():
     try:
-        print("Request received")  # Debug log
+        print("Request received")
         if 'files' not in request.files:
-            print("No files in request")  # Debug log
+            print("No files in request")
             return jsonify({"error": "No files uploaded"}), 400
             
         files = request.files.getlist('files')
-        print(f"Received {len(files)} files")  # Debug log
+        print(f"Received {len(files)} files")
         
-        if len(files) < 2:
-            return jsonify({"error": "Upload at least 2 files"}), 400
+        if len(files) < 1:  # Allow single file uploads
+            print("No valid files uploaded")
+            return jsonify({"error": "Please upload at least 1 file"}), 400
 
         proposals = process_files(files)
-        print("Processed files:", [p['filename'] for p in proposals])  # Debug log
+        print("Processed files:", [p['filename'] for p in proposals])
         
         analysis = analyze_proposals(proposals)
-        print("Analysis completed")  # Debug log
+        print("Analysis completed")
         
         return jsonify(analysis)
         
     except Exception as e:
-        print(f"ERROR: {str(e)}")  # Detailed error log
+        print(f"ERROR: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
